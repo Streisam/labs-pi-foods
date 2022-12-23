@@ -23,6 +23,11 @@ module.exports = (sequelize) => {
     },
     steps: {
       type: DataTypes.ARRAY(DataTypes.STRING)
+    },
+    img: {
+      type: DataTypes.STRING,
     }
+  }, {
+    timestamps: false
   });
 };
