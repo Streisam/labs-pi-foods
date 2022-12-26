@@ -22,6 +22,15 @@ recipesRouter.get('/', async (req, res) => {
             res.status(500).send(error);
         }
     }
+});
+
+recipesRouter.get('/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        res.status(200).json(await controllers.getRecipeById(id));
+    } catch (error) {
+        res.status(500).send(error);
+    }
 })
 
 module.exports = recipesRouter;

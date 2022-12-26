@@ -46,4 +46,4 @@ const getAllRecipes = async () => {
 module.exports = {
     getApiRecipes, 
     getAllRecipes
-}
+};
