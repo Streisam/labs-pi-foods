@@ -1,5 +1,6 @@
 const controllers = require("../controllers");
 const express = require("express");
+const { Recipe, Diet } = require("../db.js");
 
 const recipesRouter = express.Router();
 
@@ -29,6 +30,16 @@ recipesRouter.get('/:id', async(req, res) => {
         res.status(200).json(await controllers.getRecipeById(id));
     } catch (error) {
         res.status(500).send(error);
+    }
+})
+
+recipesRouter.post('/', async (req, res) => {
+    const recipeCreationForm = req.body;
+    try {
+        res.status(201).send(await controllers.postCustomRecipe(recipeCreationForm));
+    } catch (error) {
+        console.log(error)
+        res.status(404).send(error);
     }
 })
 
