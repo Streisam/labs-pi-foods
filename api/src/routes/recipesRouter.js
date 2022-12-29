@@ -1,6 +1,5 @@
 const controllers = require("../controllers");
 const express = require("express");
-const { Recipe } = require("../db.js");
 
 const recipesRouter = express.Router();
 
