@@ -3,8 +3,6 @@ const { API_KEY } = process.env;
 const axios = require("axios");
 const { Recipe, Diet } = require("../db.js");
 
-const url = 'https://api.spoonacular.com/recipes/{id}/information'
-
 const getRecipeById = async (id) => {
 
     if(!isNaN(id)) {
@@ -22,6 +20,7 @@ const getRecipeById = async (id) => {
                 s.step
             ),
         }
+        console.log("hey");
         return recipeApiById;
     }
 
@@ -30,9 +29,11 @@ const getRecipeById = async (id) => {
             id: id,
         },
         include: {
-            model: Diet
+            model: Diet,
+            attributes: [ "name" ],
+            through: { attributes: [] },
         }
-    });
+    })
 
     return recipeDbById;
 

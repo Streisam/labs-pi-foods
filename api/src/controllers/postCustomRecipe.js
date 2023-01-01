@@ -32,7 +32,6 @@ const postCustomRecipe = async (formData) => {
         name,
         summary,
         healthScore,
-        diets,
         steps,
         img
     });
@@ -42,6 +41,7 @@ const postCustomRecipe = async (formData) => {
             name: diets
         }
     })
+    console.log(dietsDb);
 
     newRecipe.addDiet(dietsDb);
     return {
