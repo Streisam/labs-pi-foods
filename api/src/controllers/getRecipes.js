@@ -13,9 +13,10 @@ const getApiRecipes = async () => {
         return {
             id: r.id,
             name: r.title,
-            img: r.image,
+            image: r.image,
             summary: r.summary,
             healthScore: r.healthScore,
+            dishTypes: r.dishTypes,
             diets:r.diets,
             steps: r.analyzedInstructions[0]?.steps?.map(s => 
                 s.step

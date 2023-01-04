@@ -12,9 +12,10 @@ const getRecipeById = async (id) => {
         recipeApiById = {
             id: data.id,
             name: data.title,
-            img: data.image,
+            image: data.image,
             summary: data.summary,
             healthScore: data.healthScore,
+            dishTypes:data.dishTypes,
             diets: data.diets,
             steps: data.analyzedInstructions[0]?.steps?.map(s =>
                 s.step
