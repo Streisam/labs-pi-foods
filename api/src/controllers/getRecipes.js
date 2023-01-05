@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
-const { Recipe } = require("../db.js");
+const { Recipe, Diet } = require("../db.js");
 
 //Get recipes from API and DB
 
@@ -31,9 +31,29 @@ const getApiRecipes = async () => {
 }
 
 const getDbRecipes = async () => {
-    const dbRecipes = await Recipe.findAll();
-      console.log(dbRecipes.length)
-      return dbRecipes;
+    const dbData = await Recipe.findAll({
+        include: {
+            model: Diet,
+            through: {
+                attributes: [],
+            },
+        },
+    });
+    if(dbData) {
+        const dbRecipes = await dbData?.map(r => {
+            return {
+                id: r.id,
+                name: r.name,
+                summary: r.summary,
+                healthScore: r.healthScore,
+                image: r.image,
+                steps:r.steps,
+                diets: r.diets?.map(d => d.name)
+            };
+        });
+          console.log(dbRecipes.length)
+          return dbRecipes;
+    }
 }
 
 const getAllRecipes = async () => {

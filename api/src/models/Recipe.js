@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
     steps: {
       type: DataTypes.ARRAY(DataTypes.STRING)
     },
-    img: {
+    image: {
       type: DataTypes.STRING,
     }
   }, {

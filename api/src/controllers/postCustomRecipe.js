@@ -8,7 +8,7 @@ const postCustomRecipe = async (formData) => {
         healthScore,
         steps,
         diets,
-        img
+        image
     } = formData;
 
     if(!name || !summary ) {
@@ -33,7 +33,7 @@ const postCustomRecipe = async (formData) => {
         summary,
         healthScore,
         steps,
-        img
+        image
     });
 
     const dietsDb = await Diet.findAll({
