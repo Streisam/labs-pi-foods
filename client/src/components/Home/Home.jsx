@@ -11,6 +11,9 @@ export default function Home() {
     const dispatch = useDispatch();
     const allRecipes = useSelector(state => state.recipes);
 
+    const [order, setOrder] = useState("");
+    const [resetFilter, setResetFilter] = useState("");
+
     const [currentPage, setCurrentPage] = useState(1);
     const [recipesPerPage, setRecipesPerPage] = useState(9);
     const indexOfLastRecipe = currentPage * recipesPerPage;
@@ -28,7 +31,10 @@ export default function Home() {
     return (
         <>
             <Filters
-            // setOrder={setOrder}
+            setOrder={setOrder}
+            setCurrentPage={setCurrentPage}
+            resetFilter={resetFilter}
+            setResetFilter={setResetFilter}
             />
             <Paginate
             allRecipes={allRecipes.length}

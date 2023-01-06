@@ -1,13 +1,35 @@
-import { getRecipes } from "../../redux/actions";
+import { getRecipes, filterByDiet, orderByAlphabet, orderByScore  } from "../../redux/actions";
 import React from "react";
 import { useDispatch } from "react-redux";
 
 export default function Filters({ setOrder, setCurrentPage, setResetFilter, resetFilter }) {
     const dispatch = useDispatch();
 
+    function handleFilterByDiet(e) {
+        e.preventDefault();
+        dispatch(filterByDiet(e.target.value));
+        setCurrentPage(1);
+        setOrder(`${e.target.value}`);
+    }
+
+    function handleOrderByAlphabet(e) {
+        e.preventDefault();
+        dispatch(orderByAlphabet(e.target.value));
+        setCurrentPage(1);
+        setOrder(`${e.target.value}`);
+    }
+
+    function handleOrderByScore(e) {
+        e.preventDefault();
+        dispatch(orderByScore(e.target.value));
+        setCurrentPage(1);
+        setOrder(`${e.target.value}`);
+    }
+
     function handleClearFilter(e) {
         e.preventDefault();
         dispatch(getRecipes())
+        setCurrentPage(1);
         setResetFilter("");
     }
 
@@ -15,14 +37,16 @@ export default function Filters({ setOrder, setCurrentPage, setResetFilter, rese
         <>
             <div>
                 <select 
-                 
+                    defaultValue={resetFilter}
+                    onChange={e => handleOrderByAlphabet(e)}
                 >
                     <option key="Filter by Order">Filter by Order</option>
                     <option key="up" value="up">A-Z</option>
                     <option key="down" value="down">Z-A</option>
                 </select>
                 <select 
-                
+                    defaultValue={resetFilter}
+                    onChange={e => handleFilterByDiet(e)}
                 >
                     <option>Filter by Type</option>
                     <option key="gluten free" name="gluten free">
@@ -56,14 +80,16 @@ export default function Filters({ setOrder, setCurrentPage, setResetFilter, rese
                         paleolithic
                     </option>
                 </select>
-                <select 
+                <select
+                    defaultValue={resetFilter}
+                    onChange={e => handleOrderByScore(e)}     
                 >
                     <option>Order by Health Score</option>
                     <option key="Asc" value="Asc">
                         Asc Health Score
                     </option>
                     <option key="Dsc" value="Dsc">
-                        Health Score Desc
+                        Desc Health Score
                     </option>
                 </select>
             </div>
