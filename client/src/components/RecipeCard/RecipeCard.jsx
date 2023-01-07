@@ -7,7 +7,7 @@ export default function RecipeCard( props ) {
         <div>
             <Link to={`/recipes/${props.id}`}></Link>
             <img src={props.image} alt={props.name} />
-            <h4>{props.name}]</h4>
+            <h4>{props.name}</h4>
             <h5>Type of Diet:</h5>
             <ul>
                 {props.types?.map(t => (

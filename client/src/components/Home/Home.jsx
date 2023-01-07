@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../../redux/actions";
+import { getRecipes, getDiets } from "../../redux/actions";
 import { Link } from "react-router-dom"
 import RecipeCard from "../RecipeCard/RecipeCard";
 import Filters from "../Filters/Filters";
 import Paginate from "../Paginate/Paginate";
+import SearchBar from "../SearchBar/SearchBar";
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -25,11 +26,14 @@ export default function Home() {
     }
 
     useEffect(() => {
-        dispatch(getRecipes())
+        dispatch(getRecipes());
+        dispatch(getDiets());
     }, [dispatch]);
 
     return (
         <>
+            <SearchBar
+            setCurrentPage={setCurrentPage}/>
             <Filters
             setOrder={setOrder}
             setCurrentPage={setCurrentPage}
