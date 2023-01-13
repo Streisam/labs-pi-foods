@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER
     },
     steps: {
-      type: DataTypes.ARRAY(DataTypes.STRING)
+      type: DataTypes.TEXT
     },
     image: {
       type: DataTypes.STRING,

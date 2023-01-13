@@ -3,6 +3,7 @@ export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
 export const GET_DIETS = "GET_DIETS";
 export const GET_RECIPES_BY_NAME = "GET_RECIPES_BY_NAME";
 export const GET_RECIPE_DETAILS = "GET_RECIPE_DETAILS";
+export const POST_RECIPE = "POST_RECIPE";
 export const FILTER_BY_DIET = "FILTER_BY_DIET";
 export const ORDER_BY_ALPHABET = "ORDER_BY_ALPHABET";
 export const ORDER_BY_SCORE = "ORDER_BY_SCORE";
@@ -54,6 +55,17 @@ export function getRecipeDetail(id) {
                 type: GET_RECIPE_DETAILS,
                 payload: recipeDetail.data
             })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export function postRecipe(payload) {
+    return async () => {
+        try {
+            const post = await axios.post("http://localhost:3001/recipes", payload);
+            return post;
         } catch (error) {
             console.log(error);
         }

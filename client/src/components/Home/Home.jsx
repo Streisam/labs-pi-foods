@@ -7,6 +7,7 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 import Filters from "../Filters/Filters";
 import Paginate from "../Paginate/Paginate";
 import SearchBar from "../SearchBar/SearchBar";
+import NavBar from "../NavBar/NavBar";
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export default function Home() {
 
     return (
         <>
+            <NavBar/>
             <SearchBar
             setCurrentPage={setCurrentPage}/>
             <Filters
