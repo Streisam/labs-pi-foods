@@ -8,7 +8,7 @@ export default function LandingPage() {
     <div className="landing">
       <div className="container" id="filt">
         <div>
-          <h1>Recipes&Diets</h1>
+          <h1>Recipes</h1>
           <div>
             <Link to="/home">
               <button className="btnHome">Go Home!</button>
