@@ -33,7 +33,6 @@ export default function CreationForm() {
     const dispatch = useDispatch();
     const history = useHistory();
     const diets = useSelector(state => state.diets);
-    let reader = new FileReader();
     // const recipes = useSelector(state => state.recipes);
     const [errors, setErrors] = useState({})
     const [post, setPost] = useState({
@@ -180,14 +179,6 @@ export default function CreationForm() {
                 { errors.name && (<p color="red">{errors.name}</p>)}
                 { errors.summary && (<p color="red">{errors.summary}</p>)}
                 { errors.diets && (<p color="red">{errors.diets}</p>)}
-                {/* <button disabled={errors.name ||
-                errors.summary || 
-                errors.diets} type="submit">
-                    Create Recipe
-                </button>
-                { errors.name && (<p color="red">{errors.name}</p>)}
-                { errors.summary && (<p color="red">{errors.summary}</p>)}
-                { errors.diets && (<p color="red">{errors.diets}</p>)} */}
                 </form>
             </div>
         </>

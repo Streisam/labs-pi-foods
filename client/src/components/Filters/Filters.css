@@ -1,0 +1,71 @@
+.container-filters {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.clearFil {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0px; 
+}
+
+.clearFil button {
+    width: 12em;
+    height: 2em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+}
+
+.filter select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    background: #5c6664;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color:#fff;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: Merriweather;
+ }
+ .filter select::-ms-expand {
+    display: none;
+ }
+ .filter {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #5c6664;
+    overflow: hidden;
+    border-radius: .25em;
+    margin-right: 5px;
+ }
+ .filter::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #333333;
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+ }
+ .filter:hover::after {
+    color: #23b499;
+ }

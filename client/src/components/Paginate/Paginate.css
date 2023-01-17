@@ -1,0 +1,25 @@
+.paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.paginate button:focus{
+  background-color: rgb(99, 93, 93);
+  color: #ffffff;
+}
+
+.paginate button {
+  background-color: #333333;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: none;
+}
+
+  

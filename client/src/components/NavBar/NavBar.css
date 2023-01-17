@@ -1,27 +1,50 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:1;
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  li a:hover {
-    background-color: #111;
-  }
+#cssmenu {
+    width:auto;
+    display:block;
+    text-align:center;
+    font-family: Merriweather;
+    line-height:1.2;
+}
+
+#cssmenu ul {
+    width:auto;
+    display:block;
+    font-size:0;
+    text-align:center;
+    color:#EEEEEE;
+    background-color: #333333;
+    border: transparent;
+    margin:0; 
+    padding:0;
+    list-style:none;
+    position:relative;
+    z-index:999999990;
+    border-radius: 3px;
+} 
+
+#cssmenu li {
+    display:inline-block;
+    position:relative;    
+    font-size:0; 
+    margin:0;
+    padding:0;
+}
+
+#cssmenu >ul>li>span, #cssmenu >ul>li>a 
+{   
+    font-size:22px;
+    color:inherit;
+    text-decoration:none;
+    padding:14px 20px; 
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:2px;   
+    display:block;   
+    position:relative;
+    transition:all 0.3s;
+}
+#cssmenu li:hover > span, #cssmenu li:hover > a
+{  
+    color:#333333;
+    background-color:#F3F3F3;
+}

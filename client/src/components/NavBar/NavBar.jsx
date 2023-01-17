@@ -4,15 +4,12 @@ import "./NavBar.css";
 export default function NavBar() {
 
     return(
-        <div>
+        <div id="cssmenu">
             <ul>
                 <li><a className="active" href="/">Landing</a></li>
                 <li><a href="/home">Recipes</a></li>
-                <li><a href="/diets">Diets</a></li>
                 <li><a href="/create">Create</a></li>
-                <li><a href="#about">About</a></li>
-               
-                </ul>
+            </ul>
         </div>
     )
 }

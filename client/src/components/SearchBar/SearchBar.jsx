@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRecipesByName } from "../../redux/actions";
+import "./SearchBar.css";
 
 export default function SearchBar({setCurrentPage}) {
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function SearchBar({setCurrentPage}) {
 
     return (
         <>
-            <div>
+            <div className="searchBar">
                 <input 
                 type="text"
                 placeholder="Search recipe by name..."

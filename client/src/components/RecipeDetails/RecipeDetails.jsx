@@ -2,7 +2,8 @@ import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getRecipeDetail } from "../../redux/actions";
-
+import NavBar from "../NavBar/NavBar";
+import "./RecipeDetails.css";
 export default function RecipeDetails(props) {
     
     const dispatch = useDispatch();
@@ -14,21 +15,28 @@ export default function RecipeDetails(props) {
     }, [dispatch, id])
     return (
         <>
-           <div>
-            
-            <div>
-                <h1>{recipeDetail.name}</h1>
-                <img src={recipeDetail.image} alt='image of the recipe' width='500px'
-                height='700px'/>
-                <h4>{recipeDetail.dishTypes}</h4>
-                <h4>{recipeDetail.diets}</h4>
-                <p>{recipeDetail.summary}</p>
-                <h4>{recipeDetail.healthScore}</h4>
-                <p>{recipeDetail.steps}</p>
+            <NavBar/>
+            <div className="container-recipeDet">
+                {recipeDetail && (
+                <div className="recipeDet" key={recipeDetail.id}>
+                    <h1>{recipeDetail.name}</h1>
+                    <div>
+                        <img src={recipeDetail.image} alt="recipe finished" />
+                    </div>
+                    <h3>HealthScore: {recipeDetail.healthScore}</h3>
+                    <h3>Diets:</h3>
+                    <p>
+                        {recipeDetail.diets ? recipeDetail.diets + ", " : recipeDetail.dishTypes}
+                    </p>
+                    <h3>Summary:</h3>
+                    <p>{recipeDetail.summary?.replace(/<[^>]*>/g, '')}</p>
+                    <h2>¿How to Prepare?</h2>
+                    {recipeDetail.steps ? recipeDetail.steps.map(s => 
+                    <p>{s}</p>) : <p>Steps not available.</p>}
+                </div>
+                )}
 
-            </div>: <div></div>
-            
-           </div>
+            </div>
         </>
     )
 }
