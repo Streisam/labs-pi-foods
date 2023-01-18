@@ -54,7 +54,7 @@ export default function Home() {
                     key={r.id}
                     id={r.id}
                     name={r.name}
-                    image={r.image}
+                    image={r.image ? r.image : r.image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPxMwY_Gx9h1KcXJn0QxSA0Q0ZixZrECAGGw&usqp=CAU"}
                     healthScore={r.healthScore}
                     types={r.diets.length > 0 ? r.diets : r.dishTypes}/>
                 )) : (

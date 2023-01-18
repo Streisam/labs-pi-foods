@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getDiets, getRecipes, postRecipe } from "../../redux/actions";
+import { getDiets, postRecipe } from "../../redux/actions";
 import NavBar from "../NavBar/NavBar";
+import "./CreationForm.css";
 
 const validate = (post) => {
     let errors = {}
@@ -17,9 +18,13 @@ const validate = (post) => {
     }
     
     if(isNaN(Number(post.healthScore))) {
-        errors.healthScore = 'Enter a health score to the recipe!'
+        errors.healthScore = 'Enter a health score number to the recipe! (optional)'
     } else if(post.healthScore < 0 || post.healthScore > 100) {
         errors.healthScore = 'Health score must be between 0-100'
+    }
+
+    if (!post.steps.length) {
+        errors.steps = 'You must add steps to your recipe.'
     }
     
     if(!post.diets.length) {
@@ -33,13 +38,12 @@ export default function CreationForm() {
     const dispatch = useDispatch();
     const history = useHistory();
     const diets = useSelector(state => state.diets);
-    // const recipes = useSelector(state => state.recipes);
     const [errors, setErrors] = useState({})
     const [post, setPost] = useState({
         name: "",
         summary: "",
         healthScore: 0,
-        steps: "",
+        steps: [],
         image: "",
         diets: []
     })
@@ -47,10 +51,6 @@ export default function CreationForm() {
     useEffect(() => {
         dispatch(getDiets());
     }, [])
-
-    // useEffect(() => {
-    //     dispatch(getRecipes());
-    // }, [])
 
     function handleChange(e) {
         e.preventDefault();
@@ -64,18 +64,34 @@ export default function CreationForm() {
         }))
     }
 
+    function handleChangeSteps(e) {
+        e.preventDefault();
+        let area = document.getElementById("steps").value;
+        let steps = area.split('\n');
+        setPost({
+            ...post,
+            [e.target.name]: steps,
+        })
+        setErrors(validate({
+            ...post,
+            [e.target.name]: steps,
+        }))
+
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(postRecipe(post));
+        console.log(post);
         setPost({
             name: "",
             summary: "",
             healthScore: 0,
-            steps: "",
+            steps: [],
             image: "",
             diets: []
         })
-        console.log(post);
+        alert("Recipe created successfully!");
         history.push("/create");
     }
 
@@ -106,7 +122,7 @@ export default function CreationForm() {
     return (
         <>
             <NavBar/>
-            <div>
+            <div className="creation-form">
                 <form onSubmit={e => {
                     handleSubmit(e)
                 }}>
@@ -121,10 +137,12 @@ export default function CreationForm() {
                     </div>
                     <div>
                         <label>Summary: </label>
-                        <input 
-                        type="text"
+                        <textarea 
+                        rows="4"
+                        cols="50"
                         value={post.summary}
                         name="summary"
+                        maxLength="600"
                         onChange={handleChange}/>
                     </div>
                     <div>
@@ -146,11 +164,14 @@ export default function CreationForm() {
                     </div>
                     <div>
                         <label>Steps: </label>
-                        <input 
-                        type="text"
+                        <textarea
+                        id="steps" 
+                        rows="4"
+                        cols="50"
                         value={post.steps}
                         name="steps"
-                        onChange={handleChange}/>
+                        maxLength="1000"
+                        onChange={handleChangeSteps}/>
                     </div>
                     <div>
                         <label>Diet/s:</label>
@@ -171,14 +192,16 @@ export default function CreationForm() {
                         }
                     </div>
                 {!post.name ? (
-                    <input type="submit" disabled></input> 
+                    <input className="disabled" type="submit" value="Submit" disabled></input> 
                 ) : errors.name ||
                 errors.diets ||
-                errors.summary ? (<input type="submit" disabled></input>
-                ) : (<input type="submit"></input>) }
-                { errors.name && (<p color="red">{errors.name}</p>)}
-                { errors.summary && (<p color="red">{errors.summary}</p>)}
-                { errors.diets && (<p color="red">{errors.diets}</p>)}
+                errors.summary || errors.steps ? (<input className="disabled" type="submit" value="Submit"  disabled></input>
+                ) : (<input className="enabled" type="submit" value="Submit"></input>) }
+                { errors.name && (<p className="error">{errors.name}</p>)}
+                { errors.summary && (<p className="error">{errors.summary}</p>)}
+                { errors.healthScore && (<p className="error">{errors.healthScore}</p>)}
+                { errors.steps && (<p className="error">{errors.steps}</p>)}
+                { errors.diets && (<p className="error">{errors.diets}</p>)}
                 </form>
             </div>
         </>

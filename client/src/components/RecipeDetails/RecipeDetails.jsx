@@ -21,12 +21,12 @@ export default function RecipeDetails(props) {
                 <div className="recipeDet" key={recipeDetail.id}>
                     <h1>{recipeDetail.name}</h1>
                     <div>
-                        <img src={recipeDetail.image} alt="recipe finished" />
+                        <img src={recipeDetail.image ? recipeDetail.image : recipeDetail.image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPxMwY_Gx9h1KcXJn0QxSA0Q0ZixZrECAGGw&usqp=CAU"} alt="recipe finished" />
                     </div>
                     <h3>HealthScore: {recipeDetail.healthScore}</h3>
                     <h3>Diets:</h3>
                     <p>
-                        {recipeDetail.diets ? recipeDetail.diets + ", " : recipeDetail.dishTypes}
+                        {recipeDetail.diets ? recipeDetail.diets + "," : <p>Not diets</p>}
                     </p>
                     <h3>Summary:</h3>
                     <p>{recipeDetail.summary?.replace(/<[^>]*>/g, '')}</p>

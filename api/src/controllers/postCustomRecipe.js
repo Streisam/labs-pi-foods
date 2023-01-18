@@ -41,12 +41,11 @@ const postCustomRecipe = async (formData) => {
             name: diets
         }
     })
-    console.log(dietsDb);
 
     newRecipe.addDiet(dietsDb);
     return {
         status: 'done',
-        message: "New recipe added succesfully!",
+        message: "New recipe added successfully!",
         recipe: newRecipe
     }
 }

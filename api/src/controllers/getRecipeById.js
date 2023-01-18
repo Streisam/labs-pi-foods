@@ -35,8 +35,22 @@ const getRecipeById = async (id) => {
             through: { attributes: [] },
         }
     })
+    console.log(recipeDbById);
 
-    return recipeDbById;
+    if(recipeDbById) {    
+        const recipeDbIdFinal = {
+                id: recipeDbById.id,
+                name: recipeDbById.name,
+                summary: recipeDbById.summary,
+                healthScore: recipeDbById.healthScore,
+                image: recipeDbById.image,
+                steps:recipeDbById.steps,
+                diets: recipeDbById.diets?.map(d => d.name)
+            };
+        
+          
+        return recipeDbIdFinal;
+    }
 
 }
 
