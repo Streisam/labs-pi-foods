@@ -92,7 +92,7 @@ export default function CreationForm() {
             diets: []
         })
         alert("Recipe created successfully!");
-        history.push("/create");
+        history.push("/home");
     }
 
     function handleDiet(e) {
