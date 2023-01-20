@@ -25,11 +25,15 @@ export function getRecipes() {
 
 export function getDiets() {
     return async (dispatch) => {
-        const diets = await axios.get("http://localhost:3001/diets");
-        return dispatch({
-            type: GET_DIETS,
-            payload: diets.data
-        })
+        try {
+            const diets = await axios.get("http://localhost:3001/diets");
+            return dispatch({
+                type: GET_DIETS,
+                payload: diets.data
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 

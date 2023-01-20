@@ -97,23 +97,23 @@ export default function CreationForm() {
 
     function handleDiet(e) {
         if(e.target.checked){
-          setPost({
-            ...post,
-            diets: [...post.diets, e.target.value]
-          })
-          setErrors(validate({
-            ...post,
-            diets: [...post.diets, e.target.value]
-          }))
-        }
-          if(e.target.checked === false){
             setPost({
-              ...post,
-              diets: [...post.diets.filter(d => d !== e.target.value)]
+            ...post,
+            diets: [...post.diets, e.target.value]
             })
             setErrors(validate({
-              ...post,
-              diets: [...post.diets.filter(d => d !== e.target.value)]
+            ...post,
+            diets: [...post.diets, e.target.value]
+            }))
+        }
+        if(e.target.checked === false){
+            setPost({
+            ...post,
+            diets: [...post.diets.filter(d => d !== e.target.value)]
+            })
+            setErrors(validate({
+            ...post,
+            diets: [...post.diets.filter(d => d !== e.target.value)]
             }))
         }
   

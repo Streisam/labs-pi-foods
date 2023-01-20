@@ -29,7 +29,6 @@ export default function Filters({ setOrder, setCurrentPage, setResetFilter, rese
 
     function handleClearFilter(e) {
         e.preventDefault();
-
         dispatch(getRecipes())
         setCurrentPage(1);
         setResetFilter("");
