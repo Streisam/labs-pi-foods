@@ -129,7 +129,8 @@ export default function CreationForm() {
                     <h1>Create your own recipe</h1>
                     <div>
                         <label>Recipe name: </label>
-                        <input 
+                        <input
+                        key="name" 
                         type="text"
                         value={post.name}
                         name="name"
@@ -137,7 +138,8 @@ export default function CreationForm() {
                     </div>
                     <div>
                         <label>Summary: </label>
-                        <textarea 
+                        <textarea
+                        key="summary"  
                         rows="4"
                         cols="50"
                         value={post.summary}
@@ -147,7 +149,8 @@ export default function CreationForm() {
                     </div>
                     <div>
                         <label>Health Score: </label>
-                        <input 
+                        <input
+                        key="healthScore"  
                         type="number"
                         value={post.healthScore}
                         name="healthScore"
@@ -156,6 +159,7 @@ export default function CreationForm() {
                     <div>
                         <label>Recipe image url: </label>
                         <input
+                        key="image" 
                         type="text"
                         name="image"
                         value={post.image}
@@ -165,6 +169,7 @@ export default function CreationForm() {
                     <div>
                         <label>Steps: </label>
                         <textarea
+                        key="steps" 
                         id="steps" 
                         rows="4"
                         cols="50"

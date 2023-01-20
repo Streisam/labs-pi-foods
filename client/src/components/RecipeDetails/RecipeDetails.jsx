@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getRecipeDetail } from "../../redux/actions";
 import NavBar from "../NavBar/NavBar";
 import "./RecipeDetails.css";
-export default function RecipeDetails(props) {
+export default function RecipeDetails() {
     
     const dispatch = useDispatch();
     const recipeDetail = useSelector(state => state.recipeDetail);

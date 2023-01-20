@@ -21,7 +21,7 @@ const getRecipeById = async (id) => {
                 s.step
             ),
         }
-        console.log("hey");
+        
         return recipeApiById;
     }
 
@@ -31,11 +31,9 @@ const getRecipeById = async (id) => {
         },
         include: {
             model: Diet,
-            attributes: [ "name" ],
             through: { attributes: [] },
         }
     })
-    console.log(recipeDbById);
 
     if(recipeDbById) {    
         const recipeDbIdFinal = {
@@ -47,7 +45,6 @@ const getRecipeById = async (id) => {
                 steps:recipeDbById.steps,
                 diets: recipeDbById.diets?.map(d => d.name)
             };
-        
           
         return recipeDbIdFinal;
     }

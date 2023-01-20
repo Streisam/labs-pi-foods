@@ -29,20 +29,22 @@ export default function Filters({ setOrder, setCurrentPage, setResetFilter, rese
 
     function handleClearFilter(e) {
         e.preventDefault();
+
         dispatch(getRecipes())
         setCurrentPage(1);
         setResetFilter("");
     }
 
+
     return (
         <>
             <div className="container-filters">
                 <div className="filter">
-                    <select 
+                    <select
                         defaultValue={resetFilter}
                         onChange={e => handleOrderByAlphabet(e)}
-                    >
-                        <option key="Filter by Order">Filter by Order</option>
+                    >   
+                        <option hidden={true} key="Filter by Order">Filter by Order</option>
                         <option key="up" value="up">A-Z</option>
                         <option key="down" value="down">Z-A</option>
                     </select>
@@ -52,45 +54,46 @@ export default function Filters({ setOrder, setCurrentPage, setResetFilter, rese
                         defaultValue={resetFilter}
                         onChange={e => handleFilterByDiet(e)}
                     >
-                        <option>Filter by Type</option>
-                        <option key="gluten free" name="gluten free">
+                        <option hidden={true}>Filter by Type</option>
+                        <option key="gluten free" value="gluten free">
                             gluten free
                         </option>
-                        <option key="pescatarian" name="pescatarian">
+                        <option key="pescatarian" value="pescatarian">
                             pescatarian
                         </option>
-                        <option key="whole 30" name="whole 30">
+                        <option key="whole 30" value="whole 30">
                             whole 30
                         </option>
-                        <option key="dairy free" name="dairy free">
+                        <option key="dairy free" value="dairy free">
                             dairy free
                         </option>
-                        <option key="primal" name="primal">
+                        <option key="primal" value="primal">
                             primal
                         </option>
-                        <option key="lacto ovo vegetarian" name="lacto ovo vegetarian">
+                        <option key="lacto ovo vegetarian" value="lacto ovo vegetarian">
                             lacto ovo vegetarian
                         </option>
-                        <option key="fodmap friendly" name="fodmap friendly">
+                        <option key="fodmap friendly" value="fodmap friendly">
                             fodmap friendly
                         </option>
-                        <option key="vegan" name="vegan">
+                        <option key="vegan" value="vegan">
                             vegan
                         </option>
-                        <option key="ketogenic" name="ketogenic">
+                        <option key="ketogenic" value="ketogenic">
                             ketogenic
                         </option>
-                        <option key="paleolithic" name="paleolithic">
+                        <option key="paleolithic" value="paleolithic">
                             paleolithic
                         </option>
                     </select>
                 </div>
                 <div className="filter">
                     <select
+                        
                         defaultValue={resetFilter}
                         onChange={e => handleOrderByScore(e)}     
                     >
-                        <option>Order by Health Score</option>
+                        <option hidden={true} >Order by Health Score</option>
                         <option key="Asc" value="Asc">
                             Asc Health Score
                         </option>

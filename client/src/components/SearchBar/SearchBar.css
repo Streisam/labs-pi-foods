@@ -19,7 +19,7 @@
 }
    
 .searchBar input:focus {
-    outline-color: lightcoral;
+    outline-color: #0fd850;
 }
 
 .searchBar button {

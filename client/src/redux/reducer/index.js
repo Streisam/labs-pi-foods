@@ -72,13 +72,13 @@ export default function rootReducer(state = initialState, action){
         case ORDER_BY_SCORE:
             const sortedScore = action.payload === "Asc" ?
                 state.recipes.sort((a, b) => {
-                    if (a.healthScore > b.healthScore) return -1;
-                    if (a.healthScore < b.healthScore) return 1;
+                    if (a.healthScore > b.healthScore) return 1;
+                    if (a.healthScore < b.healthScore) return -1;
                     return 0
                 }) :
                 state.recipes.sort((a, b) => {
-                    if (a.healthScore > b.healthScore) return 1;
-                    if (a.healthScore < b.healthScore) return -1;
+                    if (a.healthScore > b.healthScore) return -1;
+                    if (a.healthScore < b.healthScore) return 1;
                     return 0
                 })
             return {
