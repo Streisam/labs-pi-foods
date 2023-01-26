@@ -5,14 +5,14 @@ import {
     GET_RECIPE_DETAILS,
     FILTER_BY_DIET,
     ORDER_BY_ALPHABET,
-    ORDER_BY_SCORE
+    ORDER_BY_SCORE,
 } from "../actions";
 
 const initialState = {
     recipes: [],
     recipeDetail: {},
     recipesCopy: [],
-    diets: []
+    diets: [],
 }
 
 export default function rootReducer(state = initialState, action){

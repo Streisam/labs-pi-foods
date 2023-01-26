@@ -16,6 +16,7 @@ export default function SearchBar({setCurrentPage}) {
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(getRecipesByName(name));
+        setCurrentPage(1);
         setName("");
     }
 

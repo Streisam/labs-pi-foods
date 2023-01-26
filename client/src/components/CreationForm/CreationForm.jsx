@@ -11,6 +11,8 @@ const validate = (post) => {
         errors.name = 'You need to put a name to the recipe!'
     } else if (/[^a-zA-Z, ]/g.test(post.name)) {
         errors.name = 'Please only use letters for the recipe name'
+    } else if (post.name.length > 50) {
+        errors.name = 'Your name recipe have a lot of letters'
     }
     
     if(!post.summary) {
@@ -21,6 +23,10 @@ const validate = (post) => {
         errors.healthScore = 'Enter a health score number to the recipe! (optional)'
     } else if(post.healthScore < 0 || post.healthScore > 100) {
         errors.healthScore = 'Health score must be between 0-100'
+    }
+
+    if(post.image.length > 250) {
+        errors.image = 'You image url its too large!!'
     }
 
     if (!post.steps.length) {
@@ -64,23 +70,10 @@ export default function CreationForm() {
         }))
     }
 
-    function handleChangeSteps(e) {
-        e.preventDefault();
-        let area = document.getElementById("steps").value;
-        let steps = area.split('\n');
-        setPost({
-            ...post,
-            [e.target.name]: steps,
-        })
-        setErrors(validate({
-            ...post,
-            [e.target.name]: steps,
-        }))
-
-    }
-
     function handleSubmit(e) {
         e.preventDefault();
+        post.steps = post.steps.split('\n');
+        console.log(post.steps);
         dispatch(postRecipe(post));
         console.log(post);
         setPost({
@@ -91,7 +84,6 @@ export default function CreationForm() {
             image: "",
             diets: []
         })
-        alert("Recipe created successfully!");
         history.push("/home");
     }
 
@@ -140,11 +132,11 @@ export default function CreationForm() {
                         <label>Summary: </label>
                         <textarea
                         key="summary"  
-                        rows="4"
+                        rows="5"
                         cols="50"
                         value={post.summary}
                         name="summary"
-                        maxLength="600"
+                        maxLength="800"
                         onChange={handleChange}/>
                     </div>
                     <div>
@@ -167,16 +159,16 @@ export default function CreationForm() {
                         placeholder="Image Url for your recipe"/>
                     </div>
                     <div>
-                        <label>Steps: </label>
+                        <label>Steps (Please separate every step with the enter input) : </label>
                         <textarea
                         key="steps" 
                         id="steps" 
-                        rows="4"
+                        rows="6"
                         cols="50"
                         value={post.steps}
                         name="steps"
                         maxLength="1000"
-                        onChange={handleChangeSteps}/>
+                        onChange={handleChange}/>
                     </div>
                     <div>
                         <label>Diet/s:</label>
@@ -205,6 +197,7 @@ export default function CreationForm() {
                 { errors.name && (<p className="error">{errors.name}</p>)}
                 { errors.summary && (<p className="error">{errors.summary}</p>)}
                 { errors.healthScore && (<p className="error">{errors.healthScore}</p>)}
+                { errors.image && (<p className="error">{errors.image}</p>)}
                 { errors.steps && (<p className="error">{errors.steps}</p>)}
                 { errors.diets && (<p className="error">{errors.diets}</p>)}
                 </form>

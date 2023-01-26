@@ -7,6 +7,7 @@ export const POST_RECIPE = "POST_RECIPE";
 export const FILTER_BY_DIET = "FILTER_BY_DIET";
 export const ORDER_BY_ALPHABET = "ORDER_BY_ALPHABET";
 export const ORDER_BY_SCORE = "ORDER_BY_SCORE";
+export const ERROR_MSG = "ERROR_MSG";
 
 
 export function getRecipes() {
@@ -46,7 +47,7 @@ export function getRecipesByName(name) {
                 payload: recipesByName.data
             })
         } catch (error) {
-            console.log(error);
+            alert("Recipe with that name don't exist");
         }
     }
 }
@@ -69,9 +70,10 @@ export function postRecipe(payload) {
     return async () => {
         try {
             const post = await axios.post("http://localhost:3001/recipes", payload);
+            alert("Recipe created successfully!");
             return post;
         } catch (error) {
-            console.log(error);
+            alert("Couldn't create the recipe, error!");
         }
     }
 }
